@@ -6,6 +6,7 @@ from src.data import *
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
+
 class TestMainBasePage:
 
     @pytest.mark.parametrize("question_locator, answer_locator, expected_answer", [
@@ -22,7 +23,7 @@ class TestMainBasePage:
         BasePage(driver).open()
         driver.find_element(*Locators.COOKIE_BUTTON).click()
         BasePage(driver).scroll_down()
-        WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable((Locators.FIRST_SCROLL)))
+        WebDriverWait(driver, 10).until(expected_conditions.element_to_be_clickable(question_locator))
         driver.find_element(*question_locator).click()
-        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((Locators.IN_FIRST_ELEMENT)))
+        WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located(answer_locator))
         assert expected_answer == driver.find_element(*answer_locator).text
