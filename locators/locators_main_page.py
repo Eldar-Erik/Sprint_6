@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+
 class MainLocator:
     Q_HOW_MUCH = (By.XPATH, ".//div[@class = 'Home_FAQ__3uVm4']//div[@id = 'accordion__heading-0']")
     Q_WANT_FEW = (By.XPATH, ".//div[@class = 'Home_FAQ__3uVm4']//div[@id = 'accordion__heading-1']")

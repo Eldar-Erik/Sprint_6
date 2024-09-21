@@ -8,7 +8,7 @@ from src.data import *
 
 
 class TestOrderScooter:
-    def test_scooter_logo_link_succsess(self, driver):
+    def test_order_scooter_succsess(self, driver):
         BasePage(driver).open()
         driver.find_element(*Locators.COOKIE_BUTTON).click()
         WebDriverWait(driver, 10).until(expected_conditions.element_to_be_clickable(Locators.TOP_ORDER_BUTTON))
