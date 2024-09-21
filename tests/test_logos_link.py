@@ -4,7 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
 
-class TestBasePage:
+class TestLogoLink:
 
     def test_scooter_logo_link_succsess(self, driver):
         BasePage(driver).open()
