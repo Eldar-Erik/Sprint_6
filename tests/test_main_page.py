@@ -1,14 +1,13 @@
 import pytest
-from pages.base_page import BasePage
+import allure
+from pages.home_page import HomePage
 from locators.locators_main_page import MainLocator
-from locators.locators_base_page import Locators
 from src.data import *
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 
 
 class TestMainBasePage:
 
+    @allure.title('Проверка кликабельности вопросов внизу страницы')
     @pytest.mark.parametrize("question_locator, answer_locator, expected_answer", [
         (MainLocator.Q_HOW_MUCH, MainLocator.A_HOW_MUCH, answer_how_much),
         (MainLocator.Q_WANT_FEW, MainLocator.A_WANT_FEW, answer_want_few),
@@ -20,10 +19,9 @@ class TestMainBasePage:
         (MainLocator.Q_BRING_FAR, MainLocator.A_BRING_FAR, answer_bring_far),
     ])
     def test_main_page(self, driver, question_locator, answer_locator, expected_answer):
-        BasePage(driver).open()
-        driver.find_element(*Locators.COOKIE_BUTTON).click()
-        BasePage(driver).scroll_down()
-        WebDriverWait(driver, 10).until(expected_conditions.element_to_be_clickable(question_locator))
-        driver.find_element(*question_locator).click()
-        WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located(answer_locator))
-        assert expected_answer == driver.find_element(*answer_locator).text
+        home = HomePage(driver)
+        home.open_home_page()
+        home.click_cookie_button()
+        home.scroll_down()
+        home.question_click(question_locator)
+        assert expected_answer == home.get_answer(answer_locator)
