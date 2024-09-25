@@ -2,6 +2,7 @@ import allure
 from pages.order_page import OrderPage
 from src.urls import *
 
+
 class TestLogoLink:
 
     @allure.title('Проверка перехода по линку при нажатии лого Самоката')

@@ -33,5 +33,6 @@ class HomePage(BasePage):
     def get_answer(self, answer_locator):
         return self.get_text(answer_locator)
 
+    @allure.step('Прокручивает страницу вниз')
     def main_scroll_down(self):
         self.scroll_down(MainLocator.FIRST_SCROLL)
