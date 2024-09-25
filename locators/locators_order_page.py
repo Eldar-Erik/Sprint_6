@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from src.helpers import *
+from src.data import subway_st
 
 
 class OrderPageLocators:
@@ -18,10 +20,17 @@ class OrderPageLocators:
 
     MARK_SUBWAY = (By.XPATH, ".//button[contains(@class, 'select-search__option')]//div[text()='Бульвар Рокоссовского']")
     LIST_SUBWAY = (By.XPATH, ".//div[@class='select-search__select']")
+    STATION_LOCATOR = (By.XPATH, f".//button[contains(@class, 'select-search__option')]//div[text()='{subway_st}']")
     MARK_CALENDER = (By.XPATH, ".//div[@class = 'react-datepicker__day react-datepicker__day--023']")
     LIST_CALENDER = (By.XPATH, ".//div[@class = 'react-datepicker-popper']")
+    DAY_LOCATOR = (By.XPATH, f"//div[contains(@class, 'react-datepicker-popper')]//div[text()='{tomarrow}']")
     MARK_ORDER_TIME = (By.XPATH, ".//div[@class = 'Dropdown-menu']/div[text() = 'сутки']")
     LIST_ORDER_TIME = (By.XPATH, ".//div[@class = 'Dropdown-menu']")
     MARK_ORDER_CONFIRM = (By.XPATH, ".//div[@class = 'Order_ModalHeader__3FDaJ']")
     MARK_ORDER_NUMBER = (By.XPATH, ".//div[@class = 'Order_Modal__YZ-d3']/div[text() = 'Заказ оформлен']")
     MARK_ORDER_DETAIL = (By.XPATH, ".//div[@class = 'Track_OrderColumns__2r_1F']")
+
+    COOKIE_BUTTON = (By.CLASS_NAME, 'App_CookieButton__3cvqF')
+    DZEN_SEARCH = (By.ID, "dzen-header")
+    YANDEX_LOGO = (By.XPATH, ".//a[@class = 'Header_LogoYandex__3TSOI']")
+    SCOOTER_LOGO = (By.XPATH, ".//a[@class = 'Header_LogoScooter__3lsAR']")

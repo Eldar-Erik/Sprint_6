@@ -18,3 +18,8 @@ class MainLocator:
     A_CHARGER = (By.XPATH, ".//div[@id = 'accordion__panel-5']/p")
     A_CANCEL = (By.XPATH, ".//div[@id = 'accordion__panel-6']/p")
     A_BRING_FAR = (By.XPATH, ".//div[@id = 'accordion__panel-7']/p")
+
+    COOKIE_BUTTON = (By.CLASS_NAME, 'App_CookieButton__3cvqF')
+    TOP_ORDER_BUTTON = (By.XPATH, ".//button[@class = 'Button_Button__ra12g']")
+    LOWER_ORDER_BUTTON = (By.XPATH, ".//button[@class = 'Button_Button__ra12g Button_Middle__1CSJM']")
+    FIRST_SCROLL = (By.XPATH, ".//div[text() = 'Вопросы о важном']")

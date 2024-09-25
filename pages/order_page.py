@@ -1,10 +1,8 @@
 import allure
 from pages.base_page import BasePage
 from locators.locators_order_page import OrderPageLocators
-from selenium.webdriver.common.by import By
-import datetime
-from locators.locators_base_page import Urls, Locators
-from src.data import user_name, user_last_name, user_adress, user_phone, subway_st
+from src.data import user_name, user_last_name, user_adress, user_phone
+from src.urls import *
 
 
 class OrderPage(BasePage):
@@ -15,27 +13,23 @@ class OrderPage(BasePage):
 
     @allure.step('Открываем сайт на странице заказа')
     def order_open(self):
-        self.open(Urls.ORDER_FIRST_PAGE)
+        self.open(ORDER_FIRST_PAGE)
 
     @allure.step('Нажимает кнопку согласия куки')
     def order_coocies(self):
-        self.click(Locators.COOKIE_BUTTON)
+        self.click(OrderPageLocators.COOKIE_BUTTON)
 
     @allure.step('Нажимает логотип "ЯндексСамокат"')
     def scooter_logo(self):
-        self.click(Locators.SCOOTER_LOGO)
+        self.click(OrderPageLocators.SCOOTER_LOGO)
 
     @allure.step('Нажимает логотип "Яндекс"')
     def yandex_logo(self):
-        self.click(Locators.YANDEX_LOGO)
-
-    @allure.step('Переход на открывшуюся вкладку')
-    def swich_sites(self):
-        self.driver.switch_to.window(self.driver.window_handles[-1])
+        self.click(OrderPageLocators.YANDEX_LOGO)
 
     @allure.step('Ожидания загрузки страницы "Дзен"')
     def wait_for_dzen(self):
-        self.wait_for_element(Locators.DZEN_SEARCH)
+        self.wait_for_element(OrderPageLocators.DZEN_SEARCH)
 
     @allure.step('Ожидания загрузки страницы Заказа')
     def wait_for_order_site(self):
@@ -57,8 +51,7 @@ class OrderPage(BasePage):
     def select_subway_station(self):
         self.click(OrderPageLocators.FIELD_SUBWAY)
         self.wait_for_element(OrderPageLocators.LIST_SUBWAY)
-        station_locator = (By.XPATH, f".//button[contains(@class, 'select-search__option')]//div[text()='{subway_st}']")
-        self.click(station_locator)
+        self.click(OrderPageLocators.STATION_LOCATOR)
 
     @allure.step('Ввод телефонного номера из data.py')
     def enter_phone(self):
@@ -79,11 +72,9 @@ class OrderPage(BasePage):
 
     @allure.step('Выбрали дату "Послезавтра"')
     def date_tomorrow(self):
-        tomorrow = (datetime.date.today() + datetime.timedelta(days=2)).day
         self.click(OrderPageLocators.FIELD_DATE)
         self.wait_for_element(OrderPageLocators.LIST_CALENDER)
-        day_locator = (By.XPATH, f"//div[contains(@class, 'react-datepicker-popper')]//div[text()='{tomorrow}']")
-        self.click(day_locator)
+        self.click(OrderPageLocators.DAY_LOCATOR)
 
     @allure.step('Заказали самокат на сутки')
     def select_rent_duration(self):

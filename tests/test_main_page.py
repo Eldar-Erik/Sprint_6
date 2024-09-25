@@ -22,6 +22,6 @@ class TestMainBasePage:
         home = HomePage(driver)
         home.open_home_page()
         home.click_cookie_button()
-        home.scroll_down()
+        home.main_scroll_down()
         home.question_click(question_locator)
         assert expected_answer == home.get_answer(answer_locator)

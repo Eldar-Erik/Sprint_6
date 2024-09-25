@@ -1,7 +1,6 @@
 import allure
 from pages.order_page import OrderPage
-from locators.locators_base_page import Urls
-
+from src.urls import *
 
 class TestLogoLink:
 
@@ -11,7 +10,7 @@ class TestLogoLink:
         order.order_open()
         order.order_coocies()
         order.scooter_logo()
-        assert driver.current_url == Urls.BASE_PAGE
+        assert order.get_current_url() == BASE_PAGE
 
     @allure.title('Проверка перехода по линку при нажатии лого Яндекса')
     def test_yandex_logo_link_succsess(self, driver):
@@ -21,4 +20,4 @@ class TestLogoLink:
         order.yandex_logo()
         order.swich_sites()
         order.wait_for_dzen()
-        assert driver.current_url == Urls.DZEN
+        assert order.get_current_url() == DZEN

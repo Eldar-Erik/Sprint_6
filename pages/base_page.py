@@ -18,7 +18,7 @@ class BasePage:
 
     @allure.step('Метод ждет загрузки элемента и вводит данные (keys)')
     def send_keys(self, locator, keys):
-        WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator)).send_keys(keys)
+        self.wait_for_element(locator).send_keys(keys)
 
     @allure.step('Метод ждет и возвращает загрузку элемента')
     def wait_for_element(self, locator):
@@ -31,3 +31,15 @@ class BasePage:
     @allure.step('Метод возвращает текст элемента')
     def get_text(self, locator):
         return self.wait_for_element(locator).text
+
+    @allure.step('Метод получает адрес активного сайта')
+    def get_current_url(self):
+        return self.driver.current_url
+
+    @allure.step('Прокручивает страницу вниз до элемента')
+    def scroll_down(self, locator):
+        self.driver.execute_script("arguments[0].scrollIntoView();", self.driver.find_element(*locator))
+
+    @allure.step('Переход на открывшуюся вкладку')
+    def swich_sites(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])
